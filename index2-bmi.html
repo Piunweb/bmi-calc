@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            background: rgb(129, 192, 178);
+        }
+        .container{
+            background-color: whitesmoke;
+            padding: 30px 30px;
+            width: 400px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 5px;
+            font-family: 'Poppins',sans-serif;
+            box-shadow: 25px 25px 30px rgba(0,0,0,0.15);
+        }
+       .container h1{
+            background: rgb(31, 110, 121);
+            color: white;
+            text-align: center;
+            font-size: 23px;
+            letter-spacing: 1px;
+            margin-top: -30px;
+            margin-left: -30px;
+            margin-right: -30px;
+            margin-bottom: 40px;
+        }
+        .display{
+            box-shadow: 0 0 20px rgba(0,139,253,0.25);
+            margin-bottom: 60px;
+        }
+
+        #result{
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            color: rgb(112, 236, 100);
+        }
+
+        #you{
+            font-size: 18px;
+            text-align: center;
+        }
+        .row{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .row>span{
+            font-weight: 500;
+            color:rgb(78, 199, 67) ;
+            font-weight: bold;
+        }
+        #bmii{
+            margin-left: 120px;
+            width: 100px;
+            height: 30px;
+            font-weight: bold;
+            color: rgb(31, 110, 121);
+            border: 1px solid rgba(0,139,253,0.25);
+        }
+        input{
+            padding-left: 5px;
+            width: 70%;
+            height: 20px;
+            background-color: white;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <div class="display">
+            <p id="result">20.0</p>
+            <p id="you">Normal weight</p>
+         </div>
+         <div class="row">
+            <span id="weightval">Weight :</span>
+            <input type="number" id="weight" placeholder="Kg">
+         </div>
+         <div class="row">
+            <span  id="heightval">Height :</span>
+            <input type="number" id="height" placeholder="cm">
+          </div>
+          <button id="bmii" onclick="calculate()">Get your BMI</button>
+      </div>
+</body>
+<script>
+    function calculate(){
+        let bmi = ''
+        let result = document.getElementById("result")
+        let height = parseInt(document.getElementById("height").value)
+        let weight = parseInt(document.getElementById("weight").value)
+
+        bmi = (weight / ((height * height)  / 10000)).toFixed(1)
+        result.innerHTML = bmi
+
+        
+        if(bmi < 18.5){
+        you = "Underweight 😒"
+        result.style.color = "orange"
+        }else if( bmi >= 18.5 && bmi <= 24.9 ){
+        you = "Normal Weight 😍";
+        result.style.color = "green";
+        }else if( bmi >= 25 && bmi <= 29.9 ){
+        you = "Overweight 😮"
+        result.style.color = "red"
+        }else{
+        you = "you need to get a diet 😱"
+        result.style.color = "brown"
+        }
+        document.getElementById("you").innerHTML= you
+    }
+</script>
+</html>
